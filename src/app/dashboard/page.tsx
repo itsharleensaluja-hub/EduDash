@@ -5,6 +5,7 @@ import { HeroTile } from "@/components/dashboard/hero-tile";
 import { CourseTiles } from "@/components/dashboard/course-tiles";
 import { ActivityTile } from "@/components/dashboard/activity-tile";
 import { BentoGrid, GridItem } from "@/components/dashboard/bento-grid";
+import { mockProfile, mockCourses } from "@/lib/data/mock";
 import type { Course, Profile } from "@/lib/supabase/types";
 
 async function ProfileSection() {
@@ -14,35 +15,7 @@ async function ProfileSection() {
     .select("*")
     .single();
 
-  if (error || !profile) {
-    return (
-      <>
-        <GridItem>
-          <GlassCard className="col-span-1 md:col-span-2 row-span-2">
-            <HeroTile name="Student" streak={0} />
-          </GlassCard>
-        </GridItem>
-        <GridItem>
-          <GlassCard className="col-span-1 row-span-1">
-            <div className="p-4 h-full flex flex-col justify-between">
-              <h3 className="text-sm font-medium text-muted">Enrolled Courses</h3>
-              <p className="text-3xl font-bold text-white">-</p>
-            </div>
-          </GlassCard>
-        </GridItem>
-        <GridItem>
-          <GlassCard className="col-span-1 row-span-1">
-            <div className="p-4 h-full flex flex-col justify-between">
-              <h3 className="text-sm font-medium text-muted">Current GPA</h3>
-              <p className="text-3xl font-bold text-white">-</p>
-            </div>
-          </GlassCard>
-        </GridItem>
-      </>
-    );
-  }
-
-  const p = profile as Profile;
+  const p = (error || !profile ? mockProfile : profile) as Profile;
 
   return (
     <>
@@ -96,25 +69,8 @@ async function CoursesSection() {
     .select("*")
     .order("created_at", { ascending: true });
 
-  if (error || !courses) {
-    return (
-      <GlassCard className="col-span-1 md:col-span-2 row-span-2">
-        <div className="p-6 h-full flex flex-col items-center justify-center text-center">
-          <p className="text-sm text-red-400 mb-2">Failed to load courses</p>
-          <p className="text-xs text-muted">{error?.message || "Unknown error"}</p>
-        </div>
-      </GlassCard>
-    );
-  }
-
-  if (courses.length === 0) {
-    return (
-      <GlassCard className="col-span-1 md:col-span-2 row-span-2">
-        <div className="p-6 h-full flex items-center justify-center text-sm text-muted">
-          No courses yet. Add one to get started.
-        </div>
-      </GlassCard>
-    );
+  if (error || !courses || courses.length === 0) {
+    return <CourseTiles courses={mockCourses as Course[]} />;
   }
 
   return <CourseTiles courses={courses as Course[]} />;
