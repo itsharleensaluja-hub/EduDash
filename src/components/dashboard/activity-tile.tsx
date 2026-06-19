@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useMemo } from "react";
+import { useState, useEffect } from "react";
 
 interface Day {
   date: string;
@@ -31,14 +31,41 @@ const levels = [
 ];
 
 export function ActivityTile() {
-  const data = useMemo(() => generateMockData(), []);
+  const [data, setData] = useState<Day[] | null>(null);
+
+  useEffect(() => {
+    setData(generateMockData());
+  }, []);
+
+  if (!data) {
+    return (
+      <article className="p-6 h-full flex flex-col">
+        <h3 className="text-sm font-medium text-muted uppercase tracking-wider mb-4">
+          Activity
+        </h3>
+        <div className="flex-1 flex items-end gap-[3px]">
+          {Array.from({ length: 12 }).map((_, wi) => (
+            <div key={wi} className="flex flex-col gap-[3px]">
+              {Array.from({ length: 7 }).map((_, di) => (
+                <div
+                  key={di}
+                  className="w-3 h-3 rounded-sm bg-surface-hover animate-pulse"
+                />
+              ))}
+            </div>
+          ))}
+        </div>
+      </article>
+    );
+  }
+
   const weeks: Day[][] = [];
   for (let i = 0; i < data.length; i += 7) {
     weeks.push(data.slice(i, i + 7));
   }
 
   return (
-    <div className="p-6 h-full flex flex-col">
+    <article className="p-6 h-full flex flex-col">
       <h3 className="text-sm font-medium text-muted uppercase tracking-wider mb-4">
         Activity
       </h3>
@@ -65,6 +92,6 @@ export function ActivityTile() {
         ))}
         <span className="text-[10px] text-muted ml-1">More</span>
       </div>
-    </div>
+    </article>
   );
 }

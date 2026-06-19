@@ -10,7 +10,7 @@ interface HeroTileProps {
 
 export function HeroTile({ name, streak }: HeroTileProps) {
   return (
-    <div className="p-6 h-full flex flex-col justify-end relative overflow-hidden">
+    <article className="p-6 h-full flex flex-col justify-end relative overflow-hidden">
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.06]"
         style={{
@@ -43,6 +43,6 @@ export function HeroTile({ name, streak }: HeroTileProps) {
           <span className="text-xs text-amber-400/60">day streak</span>
         </motion.div>
       </div>
-    </div>
+    </article>
   );
 }

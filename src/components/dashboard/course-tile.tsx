@@ -1,6 +1,5 @@
 "use client";
 
-import { GlassCard } from "@/components/dashboard/glass-card";
 import { DynamicIcon } from "@/components/dashboard/lucide-icon";
 import { AnimatedProgress } from "@/components/dashboard/animated-progress";
 import type { Course } from "@/lib/supabase/types";
@@ -26,7 +25,7 @@ export function CourseTile({ course }: CourseTileProps) {
   const y2 = 10 + ((seed >> 12) % 80);
 
   return (
-    <div className="relative overflow-hidden rounded-xl bg-surface/40 border border-border/50 p-4 flex flex-col gap-3 min-h-[140px]">
+    <article className="relative overflow-hidden rounded-xl bg-surface/40 border border-border/50 p-4 flex flex-col gap-3 min-h-[140px]">
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.04]"
         style={{
@@ -49,6 +48,6 @@ export function CourseTile({ course }: CourseTileProps) {
       <div className="mt-auto relative z-10">
         <AnimatedProgress value={course.progress} />
       </div>
-    </div>
+    </article>
   );
 }
