@@ -25,7 +25,7 @@ export function CourseTile({ course }: CourseTileProps) {
   const y2 = 10 + ((seed >> 12) % 80);
 
   return (
-    <article className="relative overflow-hidden rounded-xl bg-surface/40 border border-border/50 p-4 flex flex-col gap-3 min-h-[140px]">
+    <article className="relative overflow-hidden rounded-xl bg-surface/40 border border-border/50 p-5 flex flex-col gap-4 h-full">
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.04]"
         style={{
@@ -36,14 +36,16 @@ export function CourseTile({ course }: CourseTileProps) {
         }}
       />
       <div className="flex items-center gap-3 relative z-10">
-        <div className="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
+        <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
           <DynamicIcon
             name={course.icon_name}
-            size={16}
+            size={20}
             className="text-accent"
           />
         </div>
-        <p className="text-sm font-medium text-white truncate">{course.title}</p>
+        <div className="min-w-0 flex-1">
+          <p className="text-base font-semibold text-white truncate">{course.title}</p>
+        </div>
       </div>
       <div className="mt-auto relative z-10">
         <AnimatedProgress value={course.progress} />
