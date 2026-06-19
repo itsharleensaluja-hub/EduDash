@@ -1,7 +1,77 @@
+import { GlassCard } from "@/components/dashboard/glass-card";
+
 export default function DashboardPage() {
   return (
-    <main className="flex-1 p-6">
-      <h1 className="text-2xl font-semibold text-white">Dashboard</h1>
-    </main>
+    <section className="p-6 grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 auto-rows-[200px]">
+      <GlassCard className="col-span-1 md:col-span-2 row-span-2">
+        <div className="p-6 h-full flex flex-col justify-end">
+          <p className="text-xs font-medium text-muted uppercase tracking-wider">
+            Welcome back
+          </p>
+          <h2 className="text-2xl font-bold text-white mt-1">Alex Chen</h2>
+        </div>
+      </GlassCard>
+
+      <GlassCard className="col-span-1 row-span-1">
+        <div className="p-4 h-full flex flex-col justify-between">
+          <h3 className="text-sm font-medium text-muted">Enrolled Courses</h3>
+          <p className="text-3xl font-bold text-white">4</p>
+        </div>
+      </GlassCard>
+
+      <GlassCard className="col-span-1 row-span-1">
+        <div className="p-4 h-full flex flex-col justify-between">
+          <h3 className="text-sm font-medium text-muted">Current GPA</h3>
+          <p className="text-3xl font-bold text-white">3.8</p>
+        </div>
+      </GlassCard>
+
+      <GlassCard className="col-span-1 md:col-span-2 row-span-2">
+        <div className="p-6 h-full flex flex-col">
+          <h3 className="text-sm font-medium text-muted uppercase tracking-wider mb-4">
+            Active Courses
+          </h3>
+          <div className="flex-1 flex items-center justify-center text-muted text-sm">
+            Courses will render here
+          </div>
+        </div>
+      </GlassCard>
+
+      <GlassCard className="col-span-1 row-span-1">
+        <div className="p-4 h-full flex flex-col justify-between">
+          <h3 className="text-sm font-medium text-muted">Streak</h3>
+          <p className="text-3xl font-bold text-white">
+            12<span className="text-lg text-muted ml-1">days</span>
+          </p>
+        </div>
+      </GlassCard>
+
+      <GlassCard className="col-span-1 md:col-span-2 row-span-2">
+        <div className="p-6 h-full flex flex-col">
+          <h3 className="text-sm font-medium text-muted uppercase tracking-wider mb-4">
+            Activity
+          </h3>
+          <div className="flex-1 flex items-center justify-center text-muted text-sm">
+            Activity graph will render here
+          </div>
+        </div>
+      </GlassCard>
+
+      <GlassCard className="col-span-1 row-span-1">
+        <div className="p-4 h-full flex flex-col justify-between">
+          <h3 className="text-sm font-medium text-muted">Assignments</h3>
+          <p className="text-3xl font-bold text-white">3</p>
+          <p className="text-xs text-muted">Due this week</p>
+        </div>
+      </GlassCard>
+
+      <GlassCard className="col-span-1 row-span-1">
+        <div className="p-4 h-full flex flex-col justify-between">
+          <h3 className="text-sm font-medium text-muted">Completed</h3>
+          <p className="text-3xl font-bold text-white">18</p>
+          <p className="text-xs text-muted">Total courses</p>
+        </div>
+      </GlassCard>
+    </section>
   );
 }
