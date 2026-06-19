@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { createClient } from "@/lib/supabase/server";
 import { GlassCard } from "@/components/dashboard/glass-card";
+import { HeroTile } from "@/components/dashboard/hero-tile";
 import { CourseTiles } from "@/components/dashboard/course-tiles";
 import type { Course } from "@/lib/supabase/types";
 
@@ -39,12 +40,7 @@ export default function DashboardPage() {
   return (
     <section className="p-6 grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 auto-rows-[200px]">
       <GlassCard className="col-span-1 md:col-span-2 row-span-2">
-        <div className="p-6 h-full flex flex-col justify-end">
-          <p className="text-xs font-medium text-muted uppercase tracking-wider">
-            Welcome back
-          </p>
-          <h2 className="text-2xl font-bold text-white mt-1">Alex Chen</h2>
-        </div>
+        <HeroTile name="Alex Chen" streak={12} />
       </GlassCard>
 
       <GlassCard className="col-span-1 row-span-1">
@@ -77,15 +73,6 @@ export default function DashboardPage() {
       >
         <CoursesSection />
       </Suspense>
-
-      <GlassCard className="col-span-1 row-span-1">
-        <div className="p-4 h-full flex flex-col justify-between">
-          <h3 className="text-sm font-medium text-muted">Streak</h3>
-          <p className="text-3xl font-bold text-white">
-            12<span className="text-lg text-muted ml-1">days</span>
-          </p>
-        </div>
-      </GlassCard>
 
       <GlassCard className="col-span-1 md:col-span-2 row-span-2">
         <div className="p-6 h-full flex flex-col">
